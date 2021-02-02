@@ -1,4 +1,4 @@
-FROM --platform=$BUILDPLATFORM golang:1.15-buster AS builder
+FROM --platform=$BUILDPLATFORM golang:1.15 AS builder-src
 
 ARG VERSION=v6.1.1
 ARG TARGETPLATFORM
@@ -13,6 +13,14 @@ RUN git checkout ${VERSION}
 
 # Fetch dependencies
 RUN GO111MODULE=on go mod download
+
+
+
+
+FROM --platform=$BUILDPLATFORM builder-src AS builder
+
+ARG TARGETPLATFORM
+ARG BUILDPLATFORM
 
 RUN GOOS=$(echo $TARGETPLATFORM | cut -f1 -d/) && \
     GOARCH=$(echo $TARGETPLATFORM | cut -f2 -d/) && \

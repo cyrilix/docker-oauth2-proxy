@@ -20,7 +20,7 @@ on:
 env:
   IMAGE_REPOSITORY: cyrilix
   IMAGE_NAME: oauth2-proxy
-  PLATFORMS: linux/arm64,linux/amd64
+  PLATFORMS: linux/arm64,linux/amd64,linux/arm/v7
 
 jobs:
   # Run tests.
